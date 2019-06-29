@@ -8,14 +8,31 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        //التعديل على البرميشن
+        // راجع البرمشن
+        $this->middleware(['permission:read_users'])->only('index');// يمكن وضع اراي
+        //$this->middleware(['permission:read_users'])->only(['index', 'create']);// يمكن وضع اراي
+        $this->middleware(['permission:create_users'])->only('create');
+        $this->middleware(['permission:update_users'])->only('edit');
+        $this->middleware(['permission:delete_users'])->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+       // $users = User::all(); هذا يعرض الجميع من ضمنهم السبر ادمن
+        //$users = User::whereRoleIs('admin')->get();// هذا يجيب الادمن الموجود في اللارفل تراس راجع الصفحة
+        //
+        $users = User::whereRoleIs('admin')->when($request->search, function($query) use ($request) {
+            return $query->where('first_name', 'like', '%' . $request->search . '%')
+            ->orWhere('last_name', 'like', '%' . $request->search . '%');
+        })->latest()->paginate(5);
         return view('dashboard.users.index', compact('users'));
     }
 
@@ -61,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit',compact('user'));
     }
 
     /**
@@ -73,7 +90,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+        ]);
+        $request_data = $request->except(['permissions']);
+        $user->update($request_data);
+
+        $user->syncPermissions($request->permissions);
+        session()->flash('success', __('site.updated_successfully'));
+        return redirect()->route('dashboard.users.index');
     }
 
     /**
@@ -85,5 +112,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        session()->flash('success', __('site.deleted_successfully'));
+        return redirect()->route('dashboard.users.index');
+
     }
 }

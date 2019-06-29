@@ -8,6 +8,12 @@ return [
     'edit' => 'تعديل',
     'delete' => 'حذف',
     'search' => 'بحث',
+
+    'yes' => 'نعم',
+    'no' => 'لا',
+    'confirm_delete' => 'تأكيد الحذف',
+     'num' => 'عدد',
+
     'no_data_found' => 'للاسف لا يوجد سجلات ',
     'users' => 'المشرفين',
     'first_name' => 'الأسم الاول',
@@ -19,5 +25,7 @@ return [
     'added_successfully' => 'تم أضافة البينات بنجاح ',
     'updated_successfully' => 'تم تعديل البينات بنجاح ',
     'delete_successfully' => 'تم الحذف البينات بنجاح ',
-    'permissions' => 'الأصلاحيات'
+    'permissions' => 'الأصلاحيات',
+    'login' => 'تسجيل الخروج',
+    'logout' => 'تسجيل الخروج'
 ];

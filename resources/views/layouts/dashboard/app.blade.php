@@ -157,7 +157,7 @@
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">dfs</span>
+                            <span class="hidden-xs">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
                         </a>
                         <ul class="dropdown-menu">
 
@@ -166,7 +166,7 @@
                                 <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                   sdf
+                                  {{ auth()->user()->first_name . ' ' . auth()->user()->lastname }}
                                     <small>Member since 2 days</small>
                                 </p>
                             </li>
@@ -195,7 +195,6 @@
 
     @yield('content')
 @include('partials._session')
-
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
