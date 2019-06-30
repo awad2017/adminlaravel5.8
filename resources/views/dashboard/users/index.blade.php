@@ -39,6 +39,7 @@
                             <th>#</th>
                             <th>@lang('site.first_name')</th>
                             <th>@lang('site.last_name')</th>
+                            <th>@lang('site.image')</th>
                             <th>@lang('site.email')</th>
                             <th>@lang('site.action')</th>
                         </tr>
@@ -49,6 +50,7 @@
                                <td>{{ $user->id }}</td>
                                <td>{{ $user->first_name }}</td>
                                <td>{{ $user->last_name }}</td>
+                               <td><img src="{{ $user->image_path }}" style="width:100px;" class="img-thumbnail" alt="user image"></td>
                                <td>{{ $user->email }}</td>
                                <td>
                                @if (auth()->user()->hasPermission('update_users'))

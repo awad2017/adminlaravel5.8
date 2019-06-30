@@ -17,7 +17,7 @@
                 </div><!-- end of box header -->
             <div class="box-body">
                 @include('partials._errors')
-                <form action="{{ route('dashboard.users.store') }}" method="POST">
+                <form action="{{ route('dashboard.users.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('post') }}
                     <div class="form-group">
@@ -31,6 +31,14 @@
                     <div class="form-group">
                         <label>@lang('site.email')</label>
                         <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+                    </div>
+                    <!-- فورم لرفع الصورة -->
+                    <div class="form-group">
+                        <label>@lang('site.image')</label>
+                        <input type="file" name="image" class="form-control image">
+                    </div>
+                    <div class="form-group">
+                        <img src="{{ asset('uploads/user_images/default.png') }}" class="img-thumbnail image-preview" style="width: 150px;" alt="user Image2">
                     </div>
                     <div class="form-group">
                         <label>@lang('site.password')</label>

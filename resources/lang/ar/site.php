@@ -19,6 +19,7 @@ return [
     'first_name' => 'الأسم الاول',
     'last_name' => 'الأسم الاخير',
     'email' => 'البريد الالكتروني',
+    'image' => 'صورة',
     'password' => 'كلمة المرور',
     'password_confirmation' => 'تأكيد كلمة المرور',
     'action' => 'اكشن',
