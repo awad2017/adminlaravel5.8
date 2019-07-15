@@ -261,7 +261,7 @@
       <path value="$PROJECT_DIR$/vendor/dimsav/laravel-translatable" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1366" />
     <option name="height" value="469" />
